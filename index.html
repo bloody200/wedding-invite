@@ -25,11 +25,25 @@
       overflow-x: hidden;
       overflow-y: auto;
       padding: 1rem;
-      background-image: url('https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+      /* Заменяем проблемное изображение с розами на универсальное, светлое и стабильное */
+      background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
       background-size: cover;
       background-position: center 35%;
       background-repeat: no-repeat;
       background-attachment: fixed;
+    }
+
+    /* Добавляем более легкий градиент, чтобы не искажать фон и не создавать розовый оттенок */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 250, 240, 0.4) 0%, rgba(250, 245, 235, 0.35) 50%, rgba(255, 248, 240, 0.4) 100%);
+      z-index: 0;
+      pointer-events: none;
     }
 
     .blur-overlay {
@@ -364,7 +378,6 @@
       text-align: center;
     }
 
-    /* АДАПТИВНАЯ ФОРМА — оптимизирована для всех устройств */
     .rsvp-form {
       background: rgba(255, 252, 245, 0.75);
       backdrop-filter: blur(8px);
@@ -460,7 +473,6 @@
       margin-top: 1rem;
     }
 
-    /* ГАЛЕРЕЯ */
     .gallery-section {
       margin: 1.5rem 0;
       width: 100%;
@@ -619,47 +631,12 @@
 
     /* АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ И ПЛАНШЕТОВ */
     @media (max-width: 768px) {
-      .invitation-card {
-        padding: 0.5rem 0.2rem;
-      }
-      .polaroid-card {
-        width: 160px;
-      }
-      .rsvp-form {
-        padding: 1rem;
-      }
-      .form-title {
-        font-size: 1.6rem;
-      }
-      .form-group label {
-        font-size: 0.9rem;
-      }
-      .form-group input, .form-group select, .form-group textarea {
-        padding: 0.6rem 0.9rem;
-        font-size: 0.85rem;
-      }
-      .radio-group {
-        gap: 1rem;
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-      .radio-group label {
-        font-size: 0.85rem;
-      }
-      .submit-btn {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.9rem;
-      }
-      .wishes-layout {
-        gap: 1rem;
-      }
-      .wishes-vertical-title {
-        font-size: 1.4rem;
-      }
-      .wish-tile {
-        font-size: 1rem;
-        padding: 0.8rem 1rem;
-      }
+      .invitation-card { padding: 0.5rem 0.2rem; }
+      .polaroid-card { width: 160px; }
+      .rsvp-form { padding: 1rem; }
+      .form-title { font-size: 1.6rem; }
+      .form-group label { font-size: 0.9rem; }
+      .radio-group { gap: 1rem; }
     }
 
     @media (max-width: 560px) {
@@ -671,17 +648,12 @@
       .swiper-slide img { max-height: 280px; }
       .rsvp-form { padding: 0.8rem; }
       .form-title { font-size: 1.4rem; }
-      .form-group { margin-bottom: 1rem; }
       .radio-group { gap: 0.8rem; }
-      .radio-group label { font-size: 0.8rem; }
-      .radio-group input[type="radio"] { transform: scale(1); }
     }
 
     @media (max-width: 380px) {
       .polaroid-card { width: 120px; }
       .form-title { font-size: 1.2rem; }
-      .form-group label { font-size: 0.8rem; }
-      .radio-group label { font-size: 0.75rem; }
     }
   </style>
 </head>
@@ -777,7 +749,6 @@
       </div>
     </div>
 
-    <!-- АДАПТИВНАЯ ФОРМА ДЛЯ ГОСТЕЙ -->
     <div class="rsvp-form">
       <div class="form-title">Ответьте, пожалуйста, на несколько вопросов</div>
       <form id="rsvpForm">
@@ -869,7 +840,6 @@
       setTimeout(() => { if (animationId) cancelAnimationFrame(animationId); ctx.clearRect(0, 0, width, height); canvas.style.display = 'none'; }, duration);
     }
     
-    // ОБРАТНЫЙ ОТСЧЁТ
     function updateCountdown() {
       const weddingDate = new Date(2026, 6, 19, 16, 0, 0);
       const diff = weddingDate - new Date();
@@ -885,7 +855,6 @@
     }
     updateCountdown(); setInterval(updateCountdown, 1000);
     
-    // КАЛЕНДАРЬ
     function renderJulyCalendar() {
       const container = document.getElementById('julyCalendar');
       if (!container) return;
@@ -901,7 +870,6 @@
     }
     renderJulyCalendar();
     
-    // ГАЛЕРЕЯ
     const photoUrls = [
       'https://bloody200.github.io/wedding-invite/1.jpg',
       'https://bloody200.github.io/wedding-invite/2.jpg',
@@ -939,7 +907,6 @@
       autoplay: { delay: 4000, disableOnInteraction: false }
     });
     
-    // ОБРАБОТКА ФОРМЫ
     const form = document.getElementById('rsvpForm');
     const formStatus = document.getElementById('formStatus');
     if (form) {
@@ -951,13 +918,11 @@
         formStatus.style.display = 'block';
         formStatus.innerHTML = '✨ Спасибо! Ваш ответ отправлен. ✨';
         form.reset();
-        setTimeout(() => {
-          formStatus.style.display = 'none';
-        }, 5000);
+        setTimeout(() => { formStatus.style.display = 'none'; }, 5000);
       });
     }
     
-    // ПАДАЮЩИЕ ПЕРЬЯ
+    // Падающие перья
     const featherContainer = document.createElement('div');
     featherContainer.className = 'feathers-background';
     document.body.insertBefore(featherContainer, document.body.firstChild);
@@ -966,7 +931,7 @@
     for (let i = 0; i < 28; i++) { const f = document.createElement('div'); f.className = 'feather'; const s = Math.floor(Math.random() * 32 + 22); f.style.width = s + 'px'; f.style.height = s + 'px'; f.style.left = (Math.random() * 94 + 2) + '%'; f.style.animationDelay = (Math.random() * 12) + 's'; f.style.animationDuration = (Math.random() * 13 + 9) + 's'; f.innerHTML = createFeatherSVG(); const svg = f.querySelector('svg'); if (svg) svg.style.color = `hsla(${48 + Math.random() * 12}, ${55 + Math.random() * 25}%, ${70 + Math.random() * 15}%, ${0.55 + Math.random() * 0.35})`; featherContainer.appendChild(f); }
     setInterval(() => { const feathers = document.querySelectorAll('.feather'); if (!feathers.length) return; const rand = feathers[Math.floor(Math.random() * feathers.length)]; rand.style.left = (Math.random() * 94 + 2) + '%'; rand.style.animation = 'none'; rand.offsetHeight; rand.style.animation = `fall ${Math.random() * 12 + 8}s linear ${Math.random() * 4}s infinite`; }, 8000);
     
-    // МУЗЫКА
+    // Музыка
     const audio = new Audio(); audio.loop = true; audio.volume = 0.45; audio.src = 'https://bloody200.github.io/wedding-invite/ym1m91.mp3';
     let isPlaying = false;
     const musicIconSpan = document.getElementById('musicIcon');
