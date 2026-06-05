@@ -352,12 +352,12 @@
     }
     new Swiper('.mySwiper', { loop: true, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, pagination: { el: '.swiper-pagination', clickable: true }, spaceBetween: 20, slidesPerView: 1, breakpoints: { 640: { slidesPerView: 2 } }, autoplay: { delay: 4000, disableOnInteraction: false } });
 
-    // ========== ОТПРАВКА В TELEGRAM ЧЕРЕЗ GOOGLE APPS SCRIPT (РАБОТАЕТ) ==========
+    // ========== ОТПРАВКА В TELEGRAM ЧЕРЕЗ GOOGLE APPS SCRIPT ==========
     const form = document.getElementById('rsvpForm');
     const formStatus = document.getElementById('formStatus');
     
-    // ВАШ URL ОТ GOOGLE APPS SCRIPT (РАБОЧИЙ)
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwCh9AdvXD8d8fyK1QP5GS2uuXGhQfga7-bUAd39M05pWjoMhVnI4RbRlUNS_fVkfGq/exec';
+    // НОВЫЙ РАБОЧИЙ URL ОТ GOOGLE APPS SCRIPT (ОБНОВЛЁН)
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwf-qqGTxV8ez4TSatZAl8F5PRAlvzuoOnNKMhoN4oSMfkWO3DhsiMBfh4ewE4drbkg/exec';
     
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -383,7 +383,7 @@
       formStatus.style.background = 'rgba(176, 176, 116, 0.2)';
       
       try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
+        await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
