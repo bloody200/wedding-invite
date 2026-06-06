@@ -352,11 +352,11 @@
     }
     new Swiper('.mySwiper', { loop: true, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, pagination: { el: '.swiper-pagination', clickable: true }, spaceBetween: 20, slidesPerView: 1, breakpoints: { 640: { slidesPerView: 2 } }, autoplay: { delay: 4000, disableOnInteraction: false } });
 
-    // ========== НОВАЯ ВЕРСИЯ ОТПРАВКИ В TELEGRAM ==========
+    // ========== ОТПРАВКА В TELEGRAM (РАБОЧАЯ ВЕРСИЯ) ==========
     const form = document.getElementById('rsvpForm');
     const formStatus = document.getElementById('formStatus');
     
-    // НОВЫЙ URL (обновлён)
+    // ИСПРАВЛЕННЫЙ URL (без лишней буквы h)
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-Bvx78BqzJHPZvETC1mwUNPLVHDCMdW_vvkR6Sk4b7sn1j55uTzOdDVHe7sebYMazqA/exec';
     
     form.addEventListener('submit', async function(e) {
@@ -440,7 +440,7 @@
     const startMusicOnAnyClick = () => { if (!isPlaying) playMusic(); document.removeEventListener('click', startMusicOnAnyClick); document.removeEventListener('touchstart', startMusicOnAnyClick); };
     document.addEventListener('click', startMusicOnAnyClick); document.addEventListener('touchstart', startMusicOnAnyClick);
     
-    console.log('✅ Сайт загружен. Новый URL скрипта подключён');
+    console.log('✅ Сайт загружен. URL скрипта исправлен');
   })();
 </script>
 </body>
