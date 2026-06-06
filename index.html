@@ -352,12 +352,12 @@
     }
     new Swiper('.mySwiper', { loop: true, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, pagination: { el: '.swiper-pagination', clickable: true }, spaceBetween: 20, slidesPerView: 1, breakpoints: { 640: { slidesPerView: 2 } }, autoplay: { delay: 4000, disableOnInteraction: false } });
 
-    // ========== ОТПРАВКА В TELEGRAM (ОБНОВЛЁННЫЙ URL) ==========
+    // ========== ОТПРАВКА НА ХОСТИНГ ==========
     const form = document.getElementById('rsvpForm');
     const formStatus = document.getElementById('formStatus');
     
-    // НОВАЯ ССЫЛКА (ОБНОВЛЕНА)
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1p8qWHqHsceSsrke5jx_qinYrXfv_Kj-LWAenstlSX_vYqg7sVg1nZNkqG6MR2Y9yKA/exec';
+    // URL вашего PHP-скрипта на Hostland
+    const API_URL = 'http://host1887761.hostland.pro/send.php';
     
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -376,18 +376,10 @@
       showStatus('⏳ Отправка...', 'loading');
       
       try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
+        const response = await fetch(API_URL, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            fullname: fullname,
-            attendance: attendance,
-            alcohol: alcohol,
-            food: food,
-            message: message
-          })
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fullname, attendance, alcohol, food, message })
         });
         
         const result = await response.json();
@@ -407,16 +399,8 @@
     function showStatus(message, type) {
       formStatus.style.display = 'block';
       formStatus.innerHTML = message;
-      
-      if (type === 'error') {
-        formStatus.style.background = 'rgba(200, 100, 100, 0.2)';
-      } else {
-        formStatus.style.background = 'rgba(176, 176, 116, 0.2)';
-      }
-      
-      setTimeout(() => {
-        formStatus.style.display = 'none';
-      }, 5000);
+      formStatus.style.background = type === 'error' ? 'rgba(200, 100, 100, 0.2)' : 'rgba(176, 176, 116, 0.2)';
+      setTimeout(() => { formStatus.style.display = 'none'; }, 5000);
     }
     
     // Декоративные перья
@@ -440,7 +424,7 @@
     const startMusicOnAnyClick = () => { if (!isPlaying) playMusic(); document.removeEventListener('click', startMusicOnAnyClick); document.removeEventListener('touchstart', startMusicOnAnyClick); };
     document.addEventListener('click', startMusicOnAnyClick); document.addEventListener('touchstart', startMusicOnAnyClick);
     
-    console.log('✅ Сайт загружен. URL скрипта обновлён');
+    console.log('✅ Сайт загружен. Данные отправляются на Hostland');
   })();
 </script>
 </body>
