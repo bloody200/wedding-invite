@@ -160,7 +160,7 @@
     .dresscode-title { font-family: 'Marck Script', cursive; font-size: 1.8rem; color: #B0B074; text-align: center; margin-bottom: 0.8rem; }
     .dresscode-text { font-size: 0.95rem; line-height: 1.6; color: #2C2A27; text-align: center; }
 
-    /* КОНТАКТНЫЙ БЛОК (ЗАМЕНИЛ ФОРМУ) */
+    /* КОНТАКТНЫЙ БЛОК */
     .contact-section {
       background: rgba(255,252,245,0.88);
       backdrop-filter: blur(8px);
@@ -339,7 +339,6 @@
       <div class="wishes-grid">
         <div class="wish-tile">Будем признательны за альтернативу букетам в форме бутылочки вина или другого приятного напитка и записки о событии, к которому приурочить её открытие.</div>
         <div class="wish-tile">Обратите внимание, что формат мероприятия не предполагает детской площадки и аниматоров. Пожалуйста, позаботьтесь о том, чтобы провести этот вечер без детей.</div>
-        <div class="wish-tile">Будем благодарны, если Вы воздержитесь от криков «Горько!» на празднике. Для нас поцелуй — знак выражения чувств, он не может быть по заказу.</div>
       </div>
     </div>
 
@@ -357,7 +356,7 @@
       </div>
     </div>
 
-    <!-- КОНТАКТНЫЙ БЛОК ВМЕСТО ФОРМЫ -->
+    <!-- КОНТАКТНЫЙ БЛОК -->
     <div class="contact-section">
       <div class="contact-title">📞 Остались вопросы?</div>
       <div class="contact-sub">Мы с радостью ответим на любые ваши вопросы</div>
@@ -400,7 +399,7 @@
 (function () {
   'use strict';
 
-  /* ── FEATHERS ── */
+  /* FEATHERS */
   var featherSVG = '<svg viewBox="0 0 20 52" xmlns="http://www.w3.org/2000/svg"><path d="M10 1C16 7 19 18 17 31 15 44 12 50 10 51 8 50 5 44 3 31 1 18 4 7 10 1Z" fill="currentColor"/><line x1="10" y1="1" x2="10" y2="51" stroke="white" stroke-width="0.7" stroke-opacity="0.45"/></svg>';
   var bg = document.getElementById('feathersBg');
   for (var i = 0; i < 30; i++) {
@@ -421,7 +420,7 @@
     bg.appendChild(f);
   }
 
-  /* ── ENVELOPE ── */
+  /* ENVELOPE */
   var blurOverlay  = document.getElementById('blurOverlay');
   var envelopeDiv  = document.getElementById('envelopeAnim');
   var flap         = document.getElementById('envelopeFlap');
@@ -445,7 +444,7 @@
     }, 900);
   }, 5000);
 
-  /* ── CONFETTI ── */
+  /* CONFETTI */
   function startConfetti() {
     var canvas = document.getElementById('confettiCanvas');
     var ctx = canvas.getContext('2d');
@@ -482,7 +481,7 @@
     id = requestAnimationFrame(draw);
   }
 
-  /* ── COUNTDOWN ── */
+  /* COUNTDOWN */
   function updateCountdown() {
     var diff = new Date(2026,6,19,16,0,0) - new Date();
     if (diff <= 0) { ['days','hours','minutes','seconds'].forEach(function(id){ var el=document.getElementById(id); if(el) el.textContent='00'; }); return; }
@@ -500,10 +499,10 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  /* ── CALENDAR ── */
+  /* CALENDAR */
   var cal = document.getElementById('julyCalendar');
   if (cal) {
-    var firstDay = new Date(2026,6,1).getDay(); // 0=Sun
+    var firstDay = new Date(2026,6,1).getDay();
     var offset = firstDay === 0 ? 6 : firstDay - 1;
     var html = '';
     for (var e=0; e<offset; e++) html += '<div class="calendar-day empty"></div>';
@@ -513,7 +512,7 @@
     cal.innerHTML = html;
   }
 
-  /* ── GALLERY ── */
+  /* GALLERY */
   var galleryWrapper = document.getElementById('galleryWrapper');
   if (galleryWrapper) {
     ['1','2','3','4','5','6','7','8'].forEach(function(n){
@@ -534,7 +533,7 @@
     });
   }
 
-  /* ── MUSIC ── */
+  /* MUSIC */
   var audio = new Audio('https://bloody200.github.io/wedding-invite/ym1m91.mp3');
   audio.loop = true; audio.volume = 0.45;
   var isPlaying = false;
