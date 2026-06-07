@@ -243,7 +243,7 @@
 
     <div class="gallery-section"><div class="swiper mySwiper"><div class="swiper-wrapper" id="galleryWrapper"></div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div><div class="swiper-pagination"></div></div></div>
 
-    <!-- НАЧАЛО: ФОРМА ОТПРАВКИ ЧЕРЕЗ ХОСТИНГ -->
+    <!-- ФОРМА ОТПРАВКИ В GOOGLE ТАБЛИЦУ -->
     <div class="rsvp-form">
       <div class="form-title">Ответьте, пожалуйста, на несколько вопросов</div>
       
@@ -283,7 +283,6 @@
         <div id="formStatus" style="display: none;" class="success-message"></div>
       </form>
     </div>
-    <!-- КОНЕЦ: ФОРМА ОТПРАВКИ ЧЕРЕЗ ХОСТИНГ -->
 
     <div class="location-section"><div class="location-label">📍 Место проведения</div><div>Залесье, Рязанское шоссе, 4А</div>
       <div class="map-buttons">
@@ -391,12 +390,12 @@
     }
     new Swiper('.mySwiper', { loop: true, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, pagination: { el: '.swiper-pagination', clickable: true }, spaceBetween: 20, slidesPerView: 1, breakpoints: { 640: { slidesPerView: 2 } }, autoplay: { delay: 4000, disableOnInteraction: false } });
 
-    // ========== ОТПРАВКА ЧЕРЕЗ ХОСТИНГ ==========
+    // ========== ОТПРАВКА В GOOGLE ТАБЛИЦУ ==========
     const form = document.getElementById('rsvpForm');
     const formStatus = document.getElementById('formStatus');
     
-    // URL вашего PHP-скрипта на Hostland (рабочий)
-    const API_URL = 'https://cors-anywhere.herokuapp.com/http://wedding-invite.ru.host1887761.serv18.hostland.pro/sendmail.php';
+    // URL вашего Google Apps Script (РАБОЧИЙ)
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwVPZ8xrMU8NLPveFui84poD3lpzqi9O_GLAg78exH2me_u6kRykPpclNWyKfnHGz0f/exec';
     
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -424,7 +423,7 @@
         const result = await response.json();
         
         if (result.status === 'ok') {
-          showStatus('✨ Спасибо! Ваш ответ отправлен. Ждем вас! ✨', 'success');
+          showStatus('✨ Спасибо! Ваш ответ сохранён в таблицу! ✨', 'success');
           form.reset();
         } else {
           showStatus('⚠️ Ошибка: ' + (result.message || 'Попробуйте позже'), 'error');
@@ -463,7 +462,7 @@
     const startMusicOnAnyClick = () => { if (!isPlaying) playMusic(); document.removeEventListener('click', startMusicOnAnyClick); document.removeEventListener('touchstart', startMusicOnAnyClick); };
     document.addEventListener('click', startMusicOnAnyClick); document.addEventListener('touchstart', startMusicOnAnyClick);
     
-    console.log('✅ Сайт загружен. Отправка через Hostland PHP');
+    console.log('✅ Сайт загружен. Данные отправляются в Google Таблицу');
   })();
 </script>
 </body>
